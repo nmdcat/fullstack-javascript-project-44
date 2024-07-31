@@ -1,5 +1,6 @@
 import mainEngine from "../index.js";
 
+//вспомогательные функции
 function getRandomInt(max) {
   return Math.floor(Math.random() * max) + 1;
 }
@@ -34,11 +35,11 @@ function calculateExpression(expression) {
       throw new Error("Unknown operation");
   }
 }
+//
 
 export default function brainCalc() {
 
     const questionPhrase = "What is the result of the expression?";
-    const generateQuestion = () => generateExpression(100);
-
-    mainEngine(questionPhrase, calculateExpression, generateQuestion);
+    
+    mainEngine(questionPhrase, calculateExpression, generateExpression);
 }
