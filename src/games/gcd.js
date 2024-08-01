@@ -1,32 +1,28 @@
-import mainEngine from "../index.js";
+import mainEngine from '../index.js';
 
-//вспомогательные функции
 function getRandomInt(max) {
   return Math.floor(Math.random() * max) + 1;
 }
 
 function calculateGCD(expression) {
-  const [a, b] = expression.split(" ").map((num) => parseInt(num, 10));
+  const [a, b] = expression.split(' ').map((num) => parseInt(num, 10));
 
-  if (isNaN(a) || isNaN(b)) {
-    throw new Error(
-      "Invalid input. Please provide two numbers separated by a space."
-    );
+  if (Number.isNaN(a) || Number.isNaN(b)) {
+    throw new Error( "Invalid input. Please provide two numbers separated by a space." );
   }
-  // Функция для вычисления НОД с помощью алгоритма Евклида
+  // Функция для вычисления НОД с помощью алгоритма Евклида//
   function gcd(a, b) {
-    a = Math.abs(a);
-    b = Math.abs(b);
+    const absA = Math.abs(a);
+    const absB = Math.abs(b);
 
-    if (b === 0) {
-      return a;
+    if (absB === 0) {
+      return absA;
     }
 
-    return gcd(b, a % b);
+    return gcd(absB, absA % absB);
   }
-  return gcd(a, b);
+  return gcd(absA, absB);
 }
-//
 
 function generateQuestion() {
   const num1 = getRandomInt(100);
@@ -41,8 +37,7 @@ function checkAnswer(question, userAnswer, correctAnswer) {
   return userAnswer === correctAnswer.toString();
 }
 
-export default function brainGCD () {
-
-    const questionPhrase = "Find the greatest common divisor of given numbers.";
-    mainEngine(questionPhrase, checkAnswer, generateQuestion);
+export default function brainGCD() {
+  const questionPhrase = 'Find the greatest common divisor of given numbers.';
+  mainEngine(questionPhrase, checkAnswer, generateQuestion);
 };

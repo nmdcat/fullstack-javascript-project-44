@@ -1,11 +1,10 @@
-import mainEngine from "../index.js";
+import mainEngine from '../index.js';
 
-//вспомогательные функции
 function getRandomInt(max) {
   return Math.floor(Math.random() * max) + 1;
 }
 
-const operations = ["+", "-", "*"];
+const operations = ['+', '-', '*'];
 
 function getRandomOperation() {
   return operations[Math.floor(Math.random() * operations.length)];
@@ -20,19 +19,19 @@ function expressionCalc() {
 }
 
 function calculateCorrectAnswer(expression) {
-  const [num1, operation, num2] = expression.split(" ");
-  const a = parseInt(num1);
-  const b = parseInt(num2);
+  const [num1, operation, num2] = expression.split(' ');
+  const a = parseInt(num1, 10);
+  const b = parseInt(num2, 10);
 
   switch (operation) {
-    case "+":
+    case '+':
       return a + b;
-    case "-":
+    case '-':
       return a - b;
-    case "*":
+    case '*':
       return a * b;
     default:
-      throw new Error("Unknown operation");
+      throw new Error('Unknown operation');
   }
 }
 
@@ -41,13 +40,12 @@ function generateQuestion() {
   const correctAnswer = calculateCorrectAnswer(question);
   return [question, correctAnswer];
 }
-//
+
 function checkAnswer(question, userAnswer, correctAnswer) {
   return userAnswer === correctAnswer.toString();
 }
 
 export default function brainCalc() {
-
-  const questionPhrase = "What is the result of the expression?";
+  const questionPhrase = 'What is the result of the expression?';
   mainEngine(questionPhrase, checkAnswer, generateQuestion);
 }
