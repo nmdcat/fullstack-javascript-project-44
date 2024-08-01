@@ -5,7 +5,7 @@ function getRandomInt(max) {
 }
 
 function calculateGCD(expression) {
-  const [a, b] = expression.split(" ").map((num) => {
+  const [num1, num2] = expression.split(' ').map((num) => {
     const parsed = parseInt(num, 10);
     if (Number.isNaN(parsed)) {
       throw new Error('Invalid input. Please provide two numbers separated by a space.');
@@ -13,11 +13,11 @@ function calculateGCD(expression) {
     return Math.abs(parsed);
   });
 
-  function gcd(a, b) {
-    return b === 0 ? a : gcd(b, a % b);
+  function gcd(x, y) {
+    return y === 0 ? x : gcd(y, x % y);
   }
 
-  return gcd(a, b);
+  return gcd(num1, num2);
 }
 
 function generateQuestion() {
