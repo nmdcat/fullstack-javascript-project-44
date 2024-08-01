@@ -1,8 +1,12 @@
 import readlineSync from "readline-sync";
 import { getUserName, greeting } from "./cli.js";
+import greetUser from "./cli.js";
 
 export default function mainEngine(questionPhrase, checkAnswer, generateQuestion) {
+  
   greeting();
+  greetUser();
+
   const name = getUserName();
 
   console.log(questionPhrase);

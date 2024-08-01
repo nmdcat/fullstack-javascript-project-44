@@ -14,7 +14,6 @@ export function getUserName() {
 }
 
 export default function greetUser() {
-    greeting();
     const name = getUserName();
     console.log(`Hello, ${name}!`);
     return name;
