@@ -5,23 +5,19 @@ function getRandomInt(max) {
 }
 
 function calculateGCD(expression) {
-  const [absA, absB] = expression.split(" ").map((num) => parseInt(num, 10));
-
-  if (Number.isNaN(absA) || Number.isNaN(absB)) {
-    throw new Error("Invalid input. Please provide two numbers separated by a space.");
-  }
-  // Функция для вычисления НОД с помощью алгоритма Евклида//
-  function gcd(a, b) {
-    const absA = Math.abs(a);
-    const absB = Math.abs(b);
-
-    if (absB === 0) {
-      return absA;
+  const [a, b] = expression.split(" ").map((num) => {
+    const parsed = parseInt(num, 10);
+    if (Number.isNaN(parsed)) {
+      throw new Error('Invalid input. Please provide two numbers separated by a space.');
     }
+    return Math.abs(parsed);
+  });
 
-    return gcd(absB, absA % absB);
+  function gcd(a, b) {
+    return b === 0 ? a : gcd(b, a % b);
   }
-  return gcd(absA, absB);
+
+  return gcd(a, b);
 }
 
 function generateQuestion() {
@@ -40,4 +36,4 @@ function checkAnswer(question, userAnswer, correctAnswer) {
 export default function brainGCD() {
   const questionPhrase = 'Find the greatest common divisor of given numbers.';
   mainEngine(questionPhrase, checkAnswer, generateQuestion);
-};
+}
