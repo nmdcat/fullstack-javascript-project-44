@@ -9,10 +9,19 @@ function getRandomInt(max) {
 }
 //
 
+function generateQuestion() {
+  const question = getRandomInt(100);
+  const correctAnswer = isEven(question);
+  return [question, correctAnswer];
+}
+
+function checkAnswer(question, userAnswer, correctAnswer) {
+  return userAnswer === correctAnswer;
+}
+
 export default function brainEven() {
 
   const questionPhrase = 'Answer "yes" if the number is even, otherwise answer "no".';
-  const generateQuestion = () => getRandomInt(100);
 
-  mainEngine(questionPhrase, isEven, generateQuestion);
+  mainEngine(questionPhrase, checkAnswer, generateQuestion);
 };

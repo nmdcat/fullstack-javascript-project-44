@@ -1,29 +1,34 @@
 import readlineSync from "readline-sync";
 import { getUserName, greeting } from "./cli.js";
 
-export default function mainEngine(questionPhrase, checkAnswer, generateQuestion) {
+export default function mainEngine(
+  questionPhrase,
+  condition,
+  generateQuestion
+) {
   greeting();
-  const name = getUserName();
+  getUserName();
 
   console.log(questionPhrase);
+  const name = getUserName();
 
   let correctAnswers = 0;
 
   while (correctAnswers < 3) {
-    const [question, correctAnswer] = generateQuestion();
-    console.log(`Question: ${question}`);
+    const questionVariant = generateQuestion();
+    console.log(`Question: ${questionVariant}`);
 
     const userAnswer = readlineSync.question("Your answer: ");
-    const isCorrect = checkAnswer(question, userAnswer, correctAnswer);
+    const correctAnswer = condition(questionVariant);
 
-    if (isCorrect) {
+    if (userAnswer == correctAnswer) {
       console.log("Correct!");
       correctAnswers += 1;
     } else {
       console.log(
         `'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`
       );
-      console.log(`Let's try again, ${name}!`);
+      console.log(`Let's try again, ${name}`);
       return;
     }
   }

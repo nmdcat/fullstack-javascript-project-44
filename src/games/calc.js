@@ -11,7 +11,7 @@ function getRandomOperation() {
   return operations[Math.floor(Math.random() * operations.length)];
 }
 
-function generateExpression() {
+function expressionCalc() {
   const num1 = getRandomInt(100);
   const num2 = getRandomInt(100);
   const operation = getRandomOperation();
@@ -19,7 +19,7 @@ function generateExpression() {
   return `${num1} ${operation} ${num2}`;
 }
 
-function calculateExpression(expression) {
+function calculateCorrectAnswer(expression) {
   const [num1, operation, num2] = expression.split(" ");
   const a = parseInt(num1);
   const b = parseInt(num2);
@@ -35,11 +35,19 @@ function calculateExpression(expression) {
       throw new Error("Unknown operation");
   }
 }
+
+function generateQuestion() {
+  const question = expressionCalc();
+  const correctAnswer = calculateCorrectAnswer(question);
+  return [question, correctAnswer];
+}
 //
+function checkAnswer(question, userAnswer, correctAnswer) {
+  return userAnswer === correctAnswer.toString();
+}
 
 export default function brainCalc() {
 
-    const questionPhrase = "What is the result of the expression?";
-    
-    mainEngine(questionPhrase, calculateExpression, generateExpression);
+  const questionPhrase = "What is the result of the expression?";
+  mainEngine(questionPhrase, checkAnswer, generateQuestion);
 }
