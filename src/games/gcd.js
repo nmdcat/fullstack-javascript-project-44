@@ -5,10 +5,10 @@ function getRandomInt(max) {
 }
 
 function calculateGCD(expression) {
-  const [a, b] = expression.split(' ').map((num) => parseInt(num, 10));
+  const [absA, absB] = expression.split(" ").map((num) => parseInt(num, 10));
 
-  if (Number.isNaN(a) || Number.isNaN(b)) {
-    throw new Error( "Invalid input. Please provide two numbers separated by a space." );
+  if (Number.isNaN(absA) || Number.isNaN(absB)) {
+    throw new Error("Invalid input. Please provide two numbers separated by a space.");
   }
   // Функция для вычисления НОД с помощью алгоритма Евклида//
   function gcd(a, b) {
